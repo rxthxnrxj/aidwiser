@@ -1,0 +1,96 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="home" style="display:flex; justify-content: space-evenly; margin-top: 20%;">
+    <div class="card" style="width: 18rem;">
+        <div style="width:18rem; height:200px" id="map"></div>
+        <div class="card-body">
+          <p class='card-text'>Detected Location for Emergency :</p>
+          <p class="card-text" id="loc">Loading...</p>
+        </div>
+      </div>
+    
+      <div class="contain">
+        <a  style="padding-top:40%;" href="{% url 'create_aid' %}" class="btn btn-success btn-press">Tap for emergency</a>
+</div>
+
+<script>
+    var x = document.getElementById("loc");
+    getLocation();
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    
+    function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude;
+      var latlon = position.coords.latitude + "," + position.coords.longitude;
+      console.log(latlon);
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=4&size=400x300&sensor=false&key=AIzaSyCAz-5NTKeYt7GUnVm1W7i7x29UZGompp4";
+        console.log(img_url);
+        document.getElementById("map").innerHTML = "<img src='"+img_url+"'>";
+    }
+
+    function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+        x.innerHTML = "User denied the request for Geolocation."
+        break;
+        case error.POSITION_UNAVAILABLE:
+        x.innerHTML = "Location information is unavailable."
+        break;
+        case error.TIMEOUT:
+        x.innerHTML = "The request to get user location timed out."
+        break;
+        case error.UNKNOWN_ERROR:
+        x.innerHTML = "An unknown error occurred."
+        break;
+  }
+}
+
+</script>
+
+
+<!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAz-5NTKeYt7GUnVm1W7i7x29UZGompp4&callback=initMap&libraries=&v=weekly"
+      async
+></script> -->
+
+
+<!-- <script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAz-5NTKeYt7GUnVm1W7i7x29UZGompp4&callback=initMap&libraries=&v=weekly"
+    async;
+    const button = document.querySelector("button");
+    const locbox=document.getElementById("loc");
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    function onSuccess(position){
+        console.table(position);
+        let {latitude, longitude} = position.coords;
+        console.log(latitude, longitude)
+        locbox.innerText=`Latitude: ${latitude}\nLongitude: ${longitude}`;
+        const locate={lat: latitude, lng: longitude};
+        const map=new google.maps.Map(document.getElementById(map),{
+            zoom:4,
+            center: locate,
+        });
+        const marker=new google.maps.Marker({
+            position:locate,
+            map:map
+        });
+    }
+
+    function onError(position){
+        locbox.innerText='Something went wrong. Try reloading and enabling location';
+    }
+
+</script> -->
+
+{% endblock content %}

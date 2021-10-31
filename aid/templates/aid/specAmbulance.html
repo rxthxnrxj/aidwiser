@@ -1,0 +1,102 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+<div style="margin-top:50px; padding:15px;" class="row">
+    <div style=" margin-right:30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5 >Registration Number:</h5>
+        <h2><strong>{{ambulance.regno}}</strong></h2>
+    </div>
+    <div style="background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5>Driver Assigned:</h5>
+        <button type="button" class="btn btn-warning"><strong>{{ambulance.drivername}}</strong></button>
+        <h5 style="margin-top:10px;">Contact:</h5>
+        <button type="button" class="btn btn-warning"><strong>{{ambulance.contact}}</strong></button>
+    </div>
+</div>
+
+<div style="margin-top:50px;">
+    <div class="row">
+        <div class="col-lg-8">
+            <div style:"  box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+            background-color: #c9f3e0;
+            border-radius: 10px;
+            padding: 15px;"
+            class="box-element">
+            <div class="card" style="width:100%;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Current Status</h5>
+                  <p class="card-text" id="location"></p>
+                  <a href="#" class="btn btn-primary">Know More</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box-element activestatus">
+                <h6>{{ambulance.status}}</h6>
+            </div>
+        </div>
+    </div></div>
+    <h3 style="margin-top:20px;"><stong>Emergency Destination:</stong></h3>
+    <div style="margin-top:20px;" class="col-lg-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><strong>{{ambulance.hospital.name}}</strong></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Location:</h6>
+              <h6 class="card-subtitle mb-2 text-muted">Latitude: {{ambulance.hospital.latitude}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">Longitude: {{ambulance.hospital.longitude}}</h6>
+              <a href="#" class="btn btn-info">Locate</a>
+              <a href="#" class="btn btn-success">Completed</a>
+            </div>
+          </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("location");
+        getLocation();
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+          var latlon = position.coords.latitude + "," + position.coords.longitude;
+          console.log(latlon);
+            var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=4&size=400x300&sensor=false&key=AIzaSyCAz-5NTKeYt7GUnVm1W7i7x29UZGompp4";
+            console.log(img_url);
+            document.getElementById("map").innerHTML = "<img src='"+img_url+"'>";
+        }
+    
+        function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+            case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+            case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+            case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+      }
+    }
+    
+    </script>
+
+{% endblock content %}

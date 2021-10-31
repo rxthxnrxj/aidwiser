@@ -1,0 +1,77 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+
+<div style="margin-top:50px; padding:15px;" class="row">
+    <div style=" margin-right:30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5>Hospital Name:</h5>
+        <h2><strong>{{hospital.name}}</strong></h2>
+    </div>
+    <div style="background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5>Doctors available:</h5>
+        <button type="button" class="btn btn-warning"><strong>{{doc_no}}</strong></button>
+    </div>
+</div>
+
+
+<div style="margin-top:50px;">
+    <div class="row">
+        <div class="col-lg-8">
+            <div style:"  box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+            background-color: #c9f3e0;
+            border-radius: 10px;
+            padding: 15px;"
+            class="box-element">
+            <div class="card" style="width:100%;">
+                <div class="card-body">
+                  <h5 class="card-title">Available doctors:</h5>
+                  {% for doctor in all_docs %}
+                  <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{{doctor.name}}</h5>
+                        <p class="card-text" id="location">Performance: {{doctor.performance}}</p>
+                      </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box-element activestatus">
+                <h6>{{hospital.status}}</h6>
+            </div>
+        </div>
+    </div></div>
+
+    <div style="margin-top:50px">
+        <div class="row">
+            <h3><stong>Ambulances Assigned Currently:</stong></h3>
+            <div class="row">
+                {% for ambulance in ambulances %}
+                <div style="margin-top:20px;" class="col-lg-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title"><strong>{{ambulance.regno}}</strong></h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Current Location:</h6>
+                          <h6 class="card-subtitle mb-2 text-muted">Latitude: {{ambulance.latitude}}</h6>
+                          <h6 class="card-subtitle mb-2 text-muted">Longitude: {{ambulance.longitude}}</h6>
+                          <p class="card-text">Information of the patient currently given by the user</p>
+                          <button type="button" href="#" class="btn btn-info">Locate</button>
+                          <button style="margin-left:5px;" type="button" class="btn btn-danger">Reject</button>
+                        </div>
+                      </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

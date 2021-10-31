@@ -1,0 +1,58 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+
+<div style="margin-top:50px; padding:15px;" class="row">
+    <div style=" margin-right:30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-4">
+        <h5>Doctor Name:</h5>
+        <h2><strong>{{doctor.name}}</strong></h2>
+        
+    </div>
+    <div style="background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-4">
+    <h5>Reg. Hospital:</h5>
+    <h4>{{doctor.hospital}}</h4>
+    </div>
+    <div style="margin-left: 30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-3">
+        <h5>Current Status:</h5>
+        <h6><strong>{{doctor.status}}</strong></h6>
+        <!-- Example single danger button -->
+<div class="btn-group">
+    <button type= Status"button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Change Status
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Available</a>
+      <a class="dropdown-item" href="#">Busy</a>
+      <a class="dropdown-item" href="#">Contact</a>
+    </div>
+  </div>
+</div>
+</div>
+<div style="margin-top:50px">
+    <div class="row">
+        <h3><stong>Emergency Assigned Currently:</stong></h3>
+        <div class="row">
+            <div style="margin-top:20px;" class="col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>TN00AW0000</strong></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">+91 9876543210</h6>
+                      <p class="card-text">Information of the patient currentlt given by the user</p>
+                      <button type="button" href="#" class="btn btn-info">Locate</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

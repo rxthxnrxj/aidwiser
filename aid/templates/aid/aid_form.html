@@ -1,0 +1,16 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+    {{form}}
+
+    <input type="submit" name="Submit">
+</form>
+
+{% endblock content %}

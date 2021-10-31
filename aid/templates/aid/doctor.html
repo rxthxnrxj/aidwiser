@@ -1,0 +1,65 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+
+<div style="margin-top:50px; padding:15px;" class="row">
+    <div style=" margin-right:30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h2><strong>DOCTORS</strong></h2>
+    </div>
+    <div style="background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5>Available Doctors:</h5>
+        <button type="button" class="btn btn-warning"><strong>{{available_count}}</strong></button>
+    </div>
+</div>
+
+  
+<div style="margin-top:50px">
+  <div class="row">
+      <h3><strong>Available Doctors:</strong></h3>
+      <div class="row">
+        {% for doctor in available_doctors %}
+          <div style="margin-top:20px;" class="col-lg-3">
+              <div style="background-color:#e8f8f1;" class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title"><strong>{{doctor.name}}</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Speciality: {{doctor.spl}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Performance: {{doctor.performance}}</h6>
+                    <a href="{% url 'spec_doctor' doctor.id %}" class="btn btn-success">Status</a>
+                  </div>
+                </div>
+          </div>
+          {% endfor %}  
+      </div>
+  </div>
+</div>
+
+<div style="margin-top:50px">
+    <div class="row">
+        <h3>All Doctors:</h3>
+        <div class="row">
+          {% for doctor in doctors %}
+            <div style="margin-top:20px;" class="col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>{{doctor.name}}</strong></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Speciality: {{doctor.spl}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">Performance: {{doctor.performance}}</h6>
+                      <a href="{% url 'spec_doctor' doctor.id %}" class="btn btn-success">Status</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}  
+        </div>
+    </div>
+</div>
+
+  
+
+{% endblock content %}

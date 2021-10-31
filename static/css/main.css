@@ -1,0 +1,57 @@
+.bg-dark {
+  background-color: #2d6a4f !important;
+  color: white !important;
+}
+
+.home {
+  display: flex;
+}
+
+.btn-press {
+  background: white !important;
+  height: 300px !important;
+  width: 300px !important;
+  border-radius: 50%;
+  color: #ff5151 !important;
+  font-size: 25px !important;
+  border-color: #ff5151 !important;
+  transition: all 0.2s;
+}
+
+.btn-press:hover {
+  background-color: #ff5151 !important;
+  color: white !important;
+  transform: scale(1.2);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+.btn-press:active {
+  background-color: #da3e3e !important;
+  transform: scale(1);
+}
+
+.contain {
+  display: grid !important;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.activestatus {
+  background-color: #2d6a4f;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avail {
+  background-color: rgb(183, 231, 231);
+}

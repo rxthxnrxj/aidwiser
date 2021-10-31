@@ -1,0 +1,40 @@
+{% extends 'aid/main.html' %}
+{% load static %}
+
+<link rel ="stylesheet" type='text/css' href="{% static 'css/main.css' %}">
+
+{% block content %}
+
+<div style="margin-top:50px; padding:15px;" class="row">
+    <div style=" margin-right:30px;background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5 >Name:</h5>
+        <h2><strong>Driver Name</strong></h2>
+    </div>
+    <div style="background-color: #e8f8f1;
+    border-radius: 10px;
+    padding: 15px;" class="col-lg-5">
+        <h5>Ambulance Assigned:</h5>
+        <button type="button" class="btn btn-warning"><strong>TN00AW0000</strong></button>
+    </div>
+</div>
+<div style="margin-top:50px">
+    <div class="row">
+        <h3><stong>Emergency Assigned Currently:</stong></h3>
+        <div class="row">
+            <div style="margin-top:20px;" class="col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>TN00AW0000</strong></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">ABC Multispeciality Hospital</h6>
+                      <p class="card-text">Information of the patient currentlt given by the user</p>
+                      <button type="button" href="#" class="btn btn-success">Set Completed</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
