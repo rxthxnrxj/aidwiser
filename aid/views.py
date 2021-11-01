@@ -99,7 +99,7 @@ def login(request):
 
 
 def traffic(lat, lon):
-    TRAFFIC_URL = "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/xml?key=lCblFiArlKp0YflxwiShdbetIH91VxdP&point="
+    TRAFFIC_URL = "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/xml?key=######################&point="
     URL = TRAFFIC_URL+str(lat)+","+str(lon)
     response = requests.get(URL)
     if response.status_code == 200:
@@ -130,7 +130,7 @@ def traffic(lat, lon):
 
 def weather(lat, lon):
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
-    API = "40b28e5c66cd4b602b129b9e19902ce5"
+    API = "#####################"
     URL = BASE_URL+"lat="+lat+"&lon="+lon+"&appid="+API
     response = requests.get(URL)
     if response.status_code == 200:
